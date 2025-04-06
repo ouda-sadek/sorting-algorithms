@@ -3,15 +3,18 @@ from sorting import SortNumbers
 def main():
     algo = SortNumbers()  
 
-    algo.generate_random_list(taille=500, min_val=0.0, max_val=500000.0)
+    algo.generate_random_list(taille=6000, min_val=0.0, max_val=500000.0)
 
     print("Before sort: ")
     algo.display()  
+
 
     algorithms = [
         ("Sort selection", algo.sort_selection),
         ("Sort insertion", algo.sort_insertion),
         ("Sort quick", algo.sort_quick),
+        ("Sort Bubble", algo.sort_bubble),
+        ("Sort Heap", algo.sort_heapsort),
     ]
 
     print("\nMeasurement of execution times for each algorithm:")
@@ -20,6 +23,10 @@ def main():
         algo.arr = lst_copy  
         lst_sorted, time_taken = algo.measure_time(algorithm)  
         print(f"{name}: {time_taken:.6f} seconds")  
+
+# print(f"Sorted list: {lst_sorted}")
+    
+        
 
 if __name__ == "__main__":
     main()

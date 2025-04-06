@@ -40,6 +40,53 @@ class SortNumbers:
         self.arr = _sort_quick(self.arr)
         return self.arr
     
+    def sort_bubble(self):
+        arr_changed = True
+        while arr_changed:
+            arr_changed = False
+            for i in range(len(self.arr)-1): # Can't finish on the last item
+                if self.arr[i] > self.arr[i+1]:
+                    self.arr[i], self.arr[i+1] = self.arr[i+1], self.arr[i]
+                    arr_changed = True
+        return self.arr
+    
+    def sort_heapsort(self):
+        n = len(self.arr)
+
+        def restore_heap(arr, n, i):
+            while True:
+                maxVal = i # take the largest as root
+                left = 2 *i + 1 # formula to find the left child index
+                right = 2 * i + 2 # formula to find the right child index
+
+                if left < n and arr[maxVal] < arr[left]: # left child exist and is largest than the root
+                    maxVal = left # Change value
+
+                if right < n and arr[maxVal] < arr[right]: # right child exist and is largest than the root
+                    maxVal = right# Change value
+            
+                # if largest isn't the root, change values and continue
+                if maxVal == i :
+                    break
+                
+                arr[i], arr[maxVal] = arr[maxVal], arr[i]
+                i = maxVal
+        
+        for i in range(n // 2 - 1, -1, -1):
+            restore_heap(self.arr, n, i)
+        
+        for i in range(n-1, 0, -1):
+            self.arr[i], self.arr[0] = self.arr[0], self.arr[i]
+            restore_heap(self.arr, i, 0)
+        return self.arr
+
+    
+
+        
+
+
+
+    
     def measure_time(self,sort_method):
         start_time = time.time()
         self.arr = sort_method()
