@@ -49,3 +49,19 @@ class SortNumbers:
     def generate_random_list(self, taille=500, min_val=0.0, max_val=500000.0):
         self.arr = [round(random.uniform(min_val, max_val),2) for _ in range(taille)]
         return self.arr
+    
+    def sort_comb(self):
+        n = len(self.arr)
+        gap = n
+        shrink = 1.3
+        sorted = False
+        while not sorted:
+            gap = int(gap /shrink)
+            if gap <= 1:
+                gap = 1
+                sorted = True
+            for i in range (n -gap):
+                if self.arr [i] > self.arr [i + gap]:
+                    self.arr [i], self.arr [i + gap] = self.arr [i + gap], self.arr [i]
+                    sorted = False
+        return self.arr

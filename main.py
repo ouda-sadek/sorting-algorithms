@@ -12,6 +12,7 @@ def main():
         ("Sort selection", algo.sort_selection),
         ("Sort insertion", algo.sort_insertion),
         ("Sort quick", algo.sort_quick),
+        ("Sort comb", algo.sort_comb),
     ]
 
     print("\nMeasurement of execution times for each algorithm:")
