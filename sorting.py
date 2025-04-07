@@ -65,3 +65,22 @@ class SortNumbers:
                     self.arr [i], self.arr [i + gap] = self.arr [i + gap], self.arr [i]
                     sorted = False
         return self.arr
+    
+    def sort_merge(self):
+        if len (self.arr) <= 1:
+            return self.arr
+        mid = len (self.arr) // 2
+        left = SortNumbers(self.arr[:mid]).sort_merge()
+        right = SortNumbers(self.arr[mid:]).sort_merge()
+        return self._merge(left, right)
+
+    def _merge(self, left, right):
+        result = []
+        while left and right:
+            if left [0] < right [0]:
+                result.append (left.pop(0))
+            else:
+                result.append(right.pop(0))
+
+        result.extend(left or right)
+        return result
