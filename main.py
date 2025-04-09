@@ -1,9 +1,11 @@
 from sorting import SortNumbers
+from perf_measures import Performance
 
 def main():
     algo = SortNumbers()  
+    board = Performance()
 
-    algo.generate_random_list(taille=500, min_val=0.0, max_val=500000.0)
+    data= algo.generate_random_list(taille=2000, min_val=0.0, max_val=500000.0)
 
     print("Before sort: ")
     algo.display()  
@@ -40,8 +42,10 @@ def main():
     print ("Sorted list:", sorted_list)
   
     algorithms = [
+        ("Sort Bubble", algo.sort_bubble),
         ("Sort selection", algo.sort_selection),
         ("Sort insertion", algo.sort_insertion),
+        ("Sort Heap", algo.sort_heapsort),
         ("Sort quick", algo.sort_quick),
         ("Sort comb", algo.sort_comb),
         ("Sort merge", algo.sort_merge),
@@ -53,6 +57,14 @@ def main():
         algo.arr = lst_copy  
         list_sorted, time_taken = algo.measure_time(algorithm)  
         print(f"{name}: {time_taken:.6f} seconds") 
+
+       
+        sorted_data = board.measure_performance(algorithm, data, name)
+       
+    
+    board.display_tests()
+# print(f"Sorted list: {lst_sorted}"    
+        
 
 if __name__ == "__main__":
     main()
