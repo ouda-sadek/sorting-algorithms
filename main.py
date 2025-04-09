@@ -38,6 +38,7 @@ def main():
         return
     
     print ("Sorted list:", sorted_list)
+  
     algorithms = [
         ("Sort selection", algo.sort_selection),
         ("Sort insertion", algo.sort_insertion),
@@ -51,7 +52,7 @@ def main():
         lst_copy = algo.arr.copy()  
         algo.arr = lst_copy  
         list_sorted, time_taken = algo.measure_time(algorithm)  
-        print(f"{name}: {time_taken:.6f} seconds")  
+        print(f"{name}: {time_taken:.6f} seconds") 
 
 if __name__ == "__main__":
     main()
