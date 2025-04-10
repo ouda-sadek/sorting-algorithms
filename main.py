@@ -2,69 +2,58 @@ from sorting import SortNumbers
 from perf_measures import Performance
 
 def main():
+    # Initialization
     algo = SortNumbers()  
     board = Performance()
 
-    data= algo.generate_random_list(taille=2000, min_val=0.0, max_val=500000.0)
-
-    print("Before sort: ")
-    algo.display()  
-
-    print ("Choose a sorting algorithm:")
-    print ("1. Sort selection")
-    print ("2. Sort insertion")
-    print ("3. Sort quick")
-    print ("4. bubble sort")
-    print ("5. Sort by heap")
-    print ("6. Sort comb")
-    print ("7. Sort merge")
-
-    choice = int (input("Enter the algorithm number : "))
+    # Generate the starting list
+    #data= algo.generate_random_list(taille=2000, min_val=0.0, max_val=500000.0)
+    original_data= algo.generate_random_list(taille=2000, min_val=0.0, max_val=500000.0)
     
-    if choice == 1:
-        sorted_list = algo.sort_selection()
-    elif choice == 2:
-        sorted_list = algo.sort_insertion()
-    elif choice == 3:
-        sorted_list = algo.sort_quick()
-    elif choice == 4:
-        sorted_list = algo.bubble_sort()
-    elif choice == 5:
-        sorted_list = algo.sort_by_heap()
-    elif choice == 6:
-        sorted_list = algo.sort_comb()
-    elif choice == 7:
-        sorted_list = algo.sort_merge()
-    else:
-        print("Invalid choice!")
+    #print("Before sort: ")
+    print("First 20 elements (unsorted):")
+    print(original_data[:20], "...")
+     
+
+    # User choice
+    #print ("Choose a sorting algorithm:")
+    algorithms = {
+        1: ("Sort selection", algo.sort_selection),
+        2: ("Sort insertion", algo.sort_insertion),
+        3: ("Sort quick",     algo.sort_quick),
+        4: ("Sort bubble",    algo.sort_bubble),
+        5: ("Sort heap",      algo.sort_heapsort),
+        6: ("Sort comb",      algo.sort_comb),
+        7: ("Sort merge",     algo.sort_merge)
+    }
+    print("\nChoose a sorting algorithm:")
+    for key, (name, _) in algorithms.items():
+        print(f"{key}. {name}")
+    
+    try:
+        choice = int (input("Enter the algorithm number : "))
+        if choice in algorithms:
+            name, method = algorithms[choice]
+            algo.arr = original_data.copy()
+            print(f"\nRunning {name}...")
+            sorted_list = method()
+            print(f"\n {name} result (first 20 values):", sorted_list[:20], "...")
+        else:
+            print("Invalid choice!")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
         return
     
-    print ("Sorted list:", sorted_list)
-  
-    algorithms = [
-        ("Sort Bubble", algo.sort_bubble),
-        ("Sort selection", algo.sort_selection),
-        ("Sort insertion", algo.sort_insertion),
-        ("Sort Heap", algo.sort_heapsort),
-        ("Sort quick", algo.sort_quick),
-        ("Sort comb", algo.sort_comb),
-        ("Sort merge", algo.sort_merge),
-    ]
-
-    print("\nMeasurement of execution times for each algorithm:")
-    for name, algorithm in algorithms:
-        lst_copy = algo.arr.copy()  
-        algo.arr = lst_copy  
-        list_sorted, time_taken = algo.measure_time(algorithm)  
-        print(f"{name}: {time_taken:.6f} seconds") 
-
-       
-        sorted_data = board.measure_performance(algorithm, data, name)
-       
-    
-    board.display_tests()
-# print(f"Sorted list: {lst_sorted}"    
+    # Performance measurement for all algorithms
+    print("\nMeasuring execution time and memory for each algorithm:\n")
+    for name, method in algorithms.values():
+       algo.arr = original_data.copy()  
+       board.measure_performance(method, original_data.copy(), name)
         
-
+    # Displaying the final table
+    board.display_tests()
+    board.export_to_json()
+  
 if __name__ == "__main__":
     main()
