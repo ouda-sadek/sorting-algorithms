@@ -43,6 +43,34 @@ class TestSortingPerformance(unittest.TestCase):
         print(sorted_data) 
         self.assertEqual(sorted_data, [1, 2, 7])
        
+    def test_list_with_duplicates(self):
+        # List with duplicates
+        test_data = [5, 3, 8, 5, 9, 2, 3, 7, 2]
+        algo = SortNumbers(test_data)
+        print("\nTesting on list with duplicates:")
+        performance = Performance()
+        sorted_data = performance.measure_performance(algo.sort_quick, test_data, "Sort quick")
+        print(sorted_data)
+        self.assertEqual(sorted_data, sorted(test_data))
+
+    def test_empty_list(self):
+        # Empty list
+        test_data = []
+        algo = SortNumbers(test_data)
+        print("\nTesting on empty list:")
+        performance = Performance()
+        sorted_data = performance.measure_performance(algo.sort_quick, test_data, "Sort quick")
+        print(sorted_data)
+        self.assertEqual(sorted_data, test_data)
+
+    def test_non_numeric_data(self):
+        # List with strings
+        test_data = ["apple", "orange", "banana", "pear"]
+        algo = SortNumbers(test_data)
+        print("\nTesting on non-numeric data (strings):")
+        performance = Performance()
+        sorted_data = performance.measure_performance(algo.sort_quick, test_data, "Sort quick")
+        self.assertEqual(sorted_data, sorted(test_data))
 
         
 if __name__ == '__main__':

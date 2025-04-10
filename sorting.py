@@ -21,16 +21,18 @@ class SortNumbers:
         end_time = time.time()
         return sorted_data, end_time - start_time
 
-    def sort_selection(self):
+    def sort_selection(self, debug=False):
         for i in range(len(self.arr)):
             min_index = i
             for j in range(i + 1, len(self.arr)):
                 if self.arr[j] < self.arr[min_index]:
                     min_index = j
             self.arr[i], self.arr[min_index] = self.arr[min_index], self.arr[i]
+            if debug:
+                print(f"Step: {self.arr}")
         return self.arr
     
-    def sort_insertion(self):
+    def sort_insertion(self, debug=False):
         for i in range(1, len(self.arr)):
             key = self.arr[i]
             j = i - 1
@@ -38,9 +40,11 @@ class SortNumbers:
                 self.arr[j + 1] = self.arr[j]
                 j -= 1
             self.arr[j + 1] = key
+            if debug:
+                print(f"Step: {self.arr}")
         return self.arr
     
-    def sort_quick(self):
+    def sort_quick(self, debug=False):
         def _sort_quick(arr):
             if len(arr) <= 1:
                 return arr
@@ -49,6 +53,8 @@ class SortNumbers:
             plus = [x for x in arr[1:] if x > pivot]
             return _sort_quick(moins) + [pivot] + _sort_quick(plus)
         self.arr = _sort_quick(self.arr)
+        if debug:
+                print(f"Step: {self.arr}")
         return self.arr
     
     def sort_bubble(self, debug=False):
@@ -63,7 +69,7 @@ class SortNumbers:
                         print(f"Step: {self.arr}")
         return self.arr
     
-    def sort_heapsort(self):
+    def sort_heapsort(self, debug=False):
         def restore_heap(arr, n, i):
             while True:
                 maxVal = i  # take the largest as root
@@ -89,10 +95,11 @@ class SortNumbers:
         for i in range(n - 1, 0, -1):
             self.arr[i], self.arr[0] = self.arr[0], self.arr[i]
             restore_heap(self.arr, i, 0)
-
+            if debug:
+                print(f"Step: {self.arr}")
         return self.arr
     
-    def sort_comb(self):
+    def sort_comb(self, debug=False):
         n = len(self.arr)
         gap = n
         shrink = 1.3
@@ -106,9 +113,11 @@ class SortNumbers:
                 if self.arr [i] > self.arr [i + gap]:
                     self.arr [i], self.arr [i + gap] = self.arr [i + gap], self.arr [i]
                     sorted = False
+                    if debug:
+                        print(f"Step: {self.arr}")
         return self.arr
     
-    def sort_merge(self):
+    def sort_merge(self, debug=False):
         def _merge_sort(arr):
             if len(arr) <= 1:
                 return arr
@@ -131,6 +140,8 @@ class SortNumbers:
             return result
 
         self.arr = _merge_sort(self.arr)
+        if debug:
+                print(f"Step: {self.arr}")
         return self.arr
 
     

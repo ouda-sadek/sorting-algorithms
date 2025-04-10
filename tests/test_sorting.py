@@ -9,33 +9,45 @@ class TestSortAlgorithms(unittest.TestCase):
 
     def test_sort_selection(self):
         sorter = SortNumbers(self.unsorted.copy())
-        self.assertEqual(sorter.sort_selection(), self.sorted_expected)
+        print("\nTest sort selection:", self.unsorted)
+        sorter.sort_selection(debug=True)
+        self.assertEqual(sorter.arr, self.sorted_expected)
 
     def test_sort_insertion(self):
         sorter = SortNumbers(self.unsorted.copy())
-        self.assertEqual(sorter.sort_insertion(), self.sorted_expected)
+        print("\nTest sort insertion:",self.unsorted)
+        sorter.sort_insertion(debug=True)
+        self.assertEqual(sorter.arr, self.sorted_expected)
 
     def test_sort_quick(self):
         sorter = SortNumbers(self.unsorted.copy())
-        self.assertEqual(sorter.sort_quick(), self.sorted_expected)
+        print("\nTest sort quick:",self.unsorted)
+        sorter.sort_quick(debug=True)
+        self.assertEqual(sorter.arr, self.sorted_expected)
 
     def test_sort_bubble(self):
         sorter = SortNumbers(self.unsorted.copy())
-        print(self.unsorted)
+        print("\nTest sort bubble:",self.unsorted)
         sorter.sort_bubble(debug=True)
         self.assertEqual(sorter.arr, self.sorted_expected)
 
     def test_sort_heapsort(self):
         sorter = SortNumbers(self.unsorted.copy())
-        self.assertEqual(sorter.sort_heapsort(), self.sorted_expected)
+        print("\nTest sort heapsort:",self.unsorted)
+        sorter.sort_heapsort(debug=True)
+        self.assertEqual(sorter.arr, self.sorted_expected)
 
     def test_sort_comb(self):
         sorter = SortNumbers(self.unsorted.copy())
-        self.assertEqual(sorter.sort_comb(), self.sorted_expected)
+        print("\nTest sort comb:",self.unsorted)
+        sorter.sort_comb(debug=True)
+        self.assertEqual(sorter.arr, self.sorted_expected)
 
     def test_sort_merge(self):
         sorter = SortNumbers(self.unsorted.copy())
-        self.assertEqual(sorter.sort_merge(), self.sorted_expected)
+        print("\nTest sort merge:",self.unsorted)
+        sorter.sort_merge(debug=True)
+        self.assertEqual(sorter.arr, self.sorted_expected)
 
 if __name__ == "__main__":
     unittest.main()
