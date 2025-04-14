@@ -8,12 +8,12 @@ def main():
 
     # Generate the starting list
     #data= algo.generate_random_list(taille=2000, min_val=0.0, max_val=500000.0)
-    original_data= algo.generate_random_list(taille=2000, min_val=0.0, max_val=500000.0)
+    original_data= algo.generate_random_list(taille=500, min_val=0.0, max_val=500000.0)
     
     #print("Before sort: ")
     print("First 20 elements (unsorted):")
     print(original_data[:20], "...")
-     
+    
 
     # User choice
     #print ("Choose a sorting algorithm:")
