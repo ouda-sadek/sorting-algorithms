@@ -51,7 +51,10 @@ class SortNumbers:
             pivot = arr[0]
             moins = [x for x in arr[1:] if x <= pivot]
             plus = [x for x in arr[1:] if x > pivot]
+            if debug:
+                print(f"Pivot: {pivot}, Moins: {moins}, Plus: {plus}")
             return _sort_quick(moins) + [pivot] + _sort_quick(plus)
+            
         self.arr = _sort_quick(self.arr)
         if debug:
                 print(f"Step: {self.arr}")
@@ -121,18 +124,23 @@ class SortNumbers:
         return self.arr
     
     def sort_merge(self, debug=False):
-        def _merge_sort(arr):
+        def _merge_sort(arr, debug=False):
             if len(arr) <= 1:
                 return arr
-            mid = len(arr) // 2
-            left = _merge_sort(arr[:mid])
-            right = _merge_sort(arr[mid:])
-            return merge(left, right)
+            if debug and len(arr) == len(self.arr):  
+                print(f"Merging: {deque(arr[:len(arr)//2])} and {deque(arr[len(arr)//2:])}")
 
-        def merge(left, right):
+            mid = len(arr) // 2
+            left = _merge_sort(arr[:mid], debug)
+            right = _merge_sort(arr[mid:], debug)
+            return merge(left, right, debug)
+
+        def merge(left, right, debug=False):
             result = []
             left = deque(left)
             right = deque(right)
+            if debug:
+                print(f"Merging: {left} and {right}")
             while left and right:
                 if left[0] < right[0]:
                     result.append(left.popleft())
@@ -140,17 +148,12 @@ class SortNumbers:
                     result.append(right.popleft())
             result.extend(left)
             result.extend(right)
-            return result
 
-        self.arr = _merge_sort(self.arr)
+            if debug:
+                print(f"Result after merge: {result}")
+            
+            return result
+        self.arr = _merge_sort(self.arr,debug)
         if debug:
                 print(f"Step: {self.arr}")
         return self.arr
-
-    
-    
-    
-    
-    
-    
-    
