@@ -49,5 +49,17 @@ class TestSortAlgorithms(unittest.TestCase):
         sorter.sort_merge(debug=True)
         self.assertEqual(sorter.arr, self.sorted_expected)
 
+    def test_sort_quick_string(self):
+        chaine = "algorithms"
+        liste_chars = list(chaine)
+        sorted_chars = sort_quick(liste_chars)
+        chaine_triee = ''.join(sorted_chars)
+        print(chaine_triee) 
+        self.assertEqual(chaine_triee, 'aghilmorst')
+
+
+    
+
+
 if __name__ == "__main__":
     unittest.main()

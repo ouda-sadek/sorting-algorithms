@@ -1,50 +1,50 @@
 [
     {
         "algorithm": "Sort selection",
-        "time": 0.5424768924713135,
-        "cpu": 10.399999999999999,
+        "time": 0.511660099029541,
+        "cpu": 6.5,
         "memory": 0.00106048583984375,
         "complexity": "O(n^2)"
     },
     {
         "algorithm": "Sort insertion",
-        "time": 0.6742100715637207,
-        "cpu": 16.6,
-        "memory": 0.0007171630859375,
+        "time": 0.6855180263519287,
+        "cpu": 16.9,
+        "memory": 0.0007181167602539062,
         "complexity": "O(n^2)"
     },
     {
         "algorithm": "Sort quick",
-        "time": 0.006454944610595703,
+        "time": 0.006478786468505859,
         "cpu": 0,
-        "memory": 0.06231689453125,
+        "memory": 0.08997344970703125,
         "complexity": "O(n log n)"
     },
     {
         "algorithm": "Sort bubble",
-        "time": 2.46187424659729,
-        "cpu": 14.3,
+        "time": 2.4661152362823486,
+        "cpu": 17.0,
         "memory": 0.00074005126953125,
         "complexity": "O(n^2)"
     },
     {
         "algorithm": "Sort heap",
-        "time": 0.010048866271972656,
+        "time": 0.010337114334106445,
         "cpu": 12.5,
         "memory": 0.0007181167602539062,
         "complexity": "O(n log n)"
     },
     {
         "algorithm": "Sort comb",
-        "time": 0.03737306594848633,
-        "cpu": 13.8,
+        "time": 0.03889584541320801,
+        "cpu": 12.9,
         "memory": 0.0007181167602539062,
         "complexity": "O(n^2)"
     },
     {
         "algorithm": "Sort merge",
-        "time": 0.010468006134033203,
-        "cpu": 12.5,
+        "time": 0.010256290435791016,
+        "cpu": 22.2,
         "memory": 0.04947662353515625,
         "complexity": "O(n log n)"
     }

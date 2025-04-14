@@ -57,6 +57,9 @@ class SortNumbers:
                 print(f"Step: {self.arr}")
         return self.arr
     
+    
+
+    
     def sort_bubble(self, debug=False):
         arr_changed = True
         while arr_changed:
